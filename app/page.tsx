@@ -1,3 +1,4 @@
+import { Button } from "@/components/ui/button";
 import { UserButton } from "@clerk/nextjs";
 
 
@@ -6,7 +7,8 @@ export default function Home() {
     <main className="">
       <h1>DropBox</h1>
       
-      <UserButton/>
+      {/* <UserButton/> */}
+      <Button>Here is a demo button</Button>
     </main>
   );
 }
