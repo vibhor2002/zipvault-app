@@ -84,7 +84,7 @@ function Dropzone() {
                     <section className='m-4'>
                         <div {...getRootProps()} className={cn("w-full h-52 flex justify-center items-center p-5 border border-dashed text-center rounded-lg",
                             isDragActive
-                                ? "bg-[#035ffe] text-white animate-pulse"
+                                ? "bg-[#3fa883] text-white animate-pulse"
                                 : "bg-slate-100/50 dark:bg-slate-800/80 text-slate-400"
                         )}>
                             < input {...getInputProps()} />
