@@ -18,6 +18,7 @@ import {
 import { FileType } from "@/typings"
 import { Button } from "../ui/button"
 import { Pencil, PencilIcon, TrashIcon } from "lucide-react"
+import { useAppStore } from "@/store/store"
 
 interface DataTableProps<TData, TValue> {
     columns: ColumnDef<TData, TValue>[]
@@ -33,6 +34,19 @@ export function DataTable<TData, TValue>({
         columns,
         getCoreRowModel: getCoreRowModel(),
     })
+
+    const [setFileId, setFilename, setIsDeleteModalOpen, setIsRenameModalOpen] = useAppStore(state => [state.setFileId, state.setFilename, state.setIsDeleteModalOpen, state.setIsRenameModalOpen]);
+
+    const openDeleteModal = (fileId: string) => {
+        setFileId(fileId);
+        setIsDeleteModalOpen(true);
+    }
+
+    const openRenameModal = (fileId: string, filename: string) => {
+        setFileId(fileId);
+        setFilename(filename);
+        setIsRenameModalOpen(true);
+    }
 
     return (
         <div className="rounded-md border">
@@ -80,11 +94,10 @@ export function DataTable<TData, TValue>({
                                         ) : cell.column.id === "filename" ? (
                                             <p
                                                 onClick={() => {
-                                                    console.log("Hello");
-                                                    // openRenameModal(
-                                                    //     (row.original as FileType).id,
-                                                    //     (row.original as FileType).filename
-                                                    // )
+                                                    openRenameModal(
+                                                        (row.original as FileType).id,
+                                                        (row.original as FileType).filename
+                                                    )
                                                 }}
                                                 className="underline flex item-center text-blue-500 hover:cursor-pointer">
                                                 {cell.getValue() as string}{" "}
@@ -100,8 +113,7 @@ export function DataTable<TData, TValue>({
                                     <Button
                                         variant={"outline"}
                                         onClick={() => {
-                                            console.log("Delete")
-                                            // openDeleteModal((row.original as FileType).id)
+                                            openDeleteModal((row.original as FileType).id)
                                         }}
                                     >
                                         <TrashIcon size={20} />
