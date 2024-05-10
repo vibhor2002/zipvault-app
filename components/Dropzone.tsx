@@ -8,6 +8,7 @@ import { addDoc, collection, doc, serverTimestamp, updateDoc } from 'firebase/fi
 import { db, storage } from '@/firebase'
 import { getDownloadURL, ref, uploadBytes } from 'firebase/storage'
 import { update } from 'firebase/database'
+import toast from 'react-hot-toast'
 
 function Dropzone() {
     const [loading, setLoading] = useState(false);
@@ -33,6 +34,7 @@ function Dropzone() {
         if (loading) return;
         if (!user) return;
 
+        const toastId = toast.loading("Uploading...");
         setLoading(true);
 
         // addDoc -> user/user123/files
@@ -56,6 +58,9 @@ function Dropzone() {
             });
         });
 
+        toast.success("Uploaded Successfully", {
+            id: toastId
+        });
         setLoading(false);
     };
 
