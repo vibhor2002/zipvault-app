@@ -16,7 +16,7 @@ export default function Home() {
           </h1>
 
           <p className="pb-20">
-            Enhance your personal storage with Dropbox offering a simple and efficient
+            Enhance your personal storage with Zipvault offering a simple and efficient
             way to store, share, and collaborate on files from anywhere. Securely store important documents
             and media, and  experience the convinience of easy file management and sharing
             in one centeralized location.
